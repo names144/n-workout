@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, ScrollView, SafeAreaView } from 'react-native';
 import { createDrawerNavigator, createStackNavigator, DrawerItems } from 'react-navigation';
-import { Ionicons } from 'react-native-vector-icons';
+import Icon from 'react-native-vector-icons/Ionicons';
 import { HomeStack } from './HomeStack';
 import { WorkoutStack } from './WorkoutStack';
 import { DrawerItem } from '../components/drawer/DrawerItem';
@@ -76,7 +76,7 @@ export class CustomDrawer extends React.Component {
 							marginBottom: 10
 						}}>
 						<View style={{paddingLeft: 18, alignSelf: 'center', flex: 0.3}}>
-							{/* <Ionicons name="md-contact" size={75} /> */}
+							<Icon name="md-contact" size={75} />
 						</View>
 						
 						<View style={{marginLeft: 18, alignSelf: 'center', flex: 0.7}}>
