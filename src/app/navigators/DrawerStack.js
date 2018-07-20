@@ -45,7 +45,7 @@ class ListItem2 extends React.Component {
 	}
 }
 
-class CustomDrawer extends React.Component {
+export class CustomDrawer extends React.Component {
 	constructor(props) {
 		super(props);
 	}
@@ -76,7 +76,7 @@ class CustomDrawer extends React.Component {
 							marginBottom: 10
 						}}>
 						<View style={{paddingLeft: 18, alignSelf: 'center', flex: 0.3}}>
-							<Ionicons name="md-contact" size={75} />
+							{/* <Ionicons name="md-contact" size={75} /> */}
 						</View>
 						
 						<View style={{marginLeft: 18, alignSelf: 'center', flex: 0.7}}>

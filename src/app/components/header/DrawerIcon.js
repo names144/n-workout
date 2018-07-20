@@ -9,7 +9,7 @@ export class DrawerIcon extends React.Component {
 		return (
 			<TouchableOpacity onPress={ () => this.props.navigation.toggleDrawer() }>
 				<View style={{marginLeft: 15, paddingLeft: 7, paddingRight: 7}}>
-					<Ionicons name="md-menu" color={colors.textPrimary} size={35} />
+					{/* <Ionicons name="md-menu" color={colors.textPrimary} size={35} /> */}
 				</View>
 			</TouchableOpacity>
 		)

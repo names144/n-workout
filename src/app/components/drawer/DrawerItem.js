@@ -25,7 +25,7 @@ export class DrawerItem extends React.Component {
 				<View 
 					style={style}>
 					<View style={{flex: 1, alignSelf: 'center', marginLeft: 15}}>
-						<MaterialCommunityIcons name={this.props.icon} size={30} />
+						{/* <MaterialCommunityIcons name={this.props.icon} size={30} /> */}
 					</View>
 					<View style={{flex: 6, alignSelf: 'center', marginLeft: 10}}>
 						<Text style={{fontSize: 20}}>{this.props.title}</Text>

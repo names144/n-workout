@@ -2,11 +2,11 @@ import React from 'react';
 import { View, Button, Text, StyleSheet, ScrollView, SafeAreaView } from 'react-native';
 import ActionButton from 'react-native-action-button';
 import Icon from 'react-native-vector-icons/Ionicons';
+import { VictoryBar } from 'victory-native';
 
 import { colors } from '../../styles/colors';
 import { DrawerIcon } from '../../components/header/DrawerIcon';
 import { Card } from '../../components/common/Card';
-import { PieChart } from '../../components/charts/PieChart';
 
 const styles = StyleSheet.create({
   container: {
@@ -53,9 +53,9 @@ export class HomeScreen extends React.Component {
 							<Text style={{fontSize: 20, fontWeight: '500'}}>Left</Text>
 							<Text style={{fontSize: 20, fontWeight: '500'}}>Right</Text>
 						</View>
-						<PieChart />
+						<VictoryBar />
 					</Card>
-
+					
 					{
 						cards.map((i) => {
 							return (
