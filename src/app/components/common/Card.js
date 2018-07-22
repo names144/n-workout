@@ -11,11 +11,11 @@ const styles = StyleSheet.create({
 		padding: 10,
 		shadowColor: '#000',
 		shadowOffset: {
-			width: 1,
-			height: 1
+			width: 0,
+			height: 0
 		},
 		shadowOpacity: 0.24,
-		shadowRadius: 1
+		shadowRadius: 3
 	}
 });
 

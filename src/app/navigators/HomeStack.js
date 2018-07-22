@@ -8,9 +8,6 @@ export const HomeStack = createStackNavigator(
 	{
 		Home: {
 			screen: HomeScreen,
-		},
-		Screen2: {
-			screen: Screen2
 		}
 	},
 	{...defaultStackConfig, initialRouteName: 'Home'}

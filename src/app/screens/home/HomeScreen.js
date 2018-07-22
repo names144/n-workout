@@ -18,12 +18,6 @@ const styles = StyleSheet.create({
   }
 });
 
-const data = [
-	{ quarter: 1, earnings: 13000 },
-	{ quarter: 2, earnings: 16500 },
-	{ quarter: 3, earnings: 14250 },
-	{ quarter: 4, earnings: 19000 }
-  ];
 
 export class HomeScreen extends React.Component {
 	static navigationOptions = ({ navigation }) => {
@@ -36,20 +30,9 @@ export class HomeScreen extends React.Component {
 	};
 
 	render() {
-		let cards = [];
-		for (let i = 0; i < 20; i++) {
-			cards.push(i);
-		}
-
 		return (
 			<SafeAreaView style={styles.container}>
 				<ScrollView>
-					<Card>
-						<View>
-							<Button title="Random Pokemon" onPress={() => {this.props.navigation.navigate('Screen2')}}/>
-						</View>
-					</Card>
-
 					<Card>
 						<View style={{
 							flexDirection: 'row',
@@ -57,7 +40,7 @@ export class HomeScreen extends React.Component {
 							borderBottomWidth: 1,
 							padding: 5,
 							borderBottomColor: 'rgba(0,0,0,0.24)'}}>
-							<Text style={{fontSize: 20, fontWeight: '500'}}>Last Workout</Text>
+							<Text style={{fontSize: 20, fontWeight: '500'}}>Last Session</Text>
 							<Text style={{fontSize: 20, fontWeight: '500'}}>Yesterday</Text>
 						</View>
 						<View style={{marginTop: 20, flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between', }}>
@@ -80,30 +63,9 @@ export class HomeScreen extends React.Component {
 									labels={[]}/>
 							</View>
 						</View>
-						
 					</Card>
-					
-					{
-						cards.map((i) => {
-							return (
-								<Card key={i}>
-									<Text>TESTING {i}</Text>
-								</Card>
-							);
-						})
-					}
 				</ScrollView>
-				<ActionButton buttonColor="rgba(231,76,60,1)">
-					<ActionButton.Item buttonColor='#9b59b6' title="New Task" onPress={() => console.log("notes tapped!")}>
-						<Icon name="md-create" style={styles.actionButtonIcon} />
-					</ActionButton.Item>
-					<ActionButton.Item buttonColor='#3498db' title="Notifications" onPress={() => {}}>
-						<Icon name="md-notifications-off" style={styles.actionButtonIcon} />
-					</ActionButton.Item>
-					<ActionButton.Item buttonColor='#1abc9c' title="All Tasks" onPress={() => {}}>
-						<Icon name="md-done-all" style={styles.actionButtonIcon} />
-					</ActionButton.Item>
-				</ActionButton>
+				<ActionButton buttonColor="rgba(231,76,60,1)" onPress={() => this.props.navigation.navigate('NewWorkout')} />
 			</SafeAreaView>
 		);
 	}
