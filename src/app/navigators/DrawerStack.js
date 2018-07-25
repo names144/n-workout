@@ -4,6 +4,7 @@ import { createDrawerNavigator, createStackNavigator, DrawerItems } from 'react-
 import Icon from 'react-native-vector-icons/Ionicons';
 import { HomeStack } from './HomeStack';
 import { WorkoutStack } from './WorkoutStack';
+import { TimerScreen } from '../screens/timer/TimerScreen';
 import { DrawerItem } from '../components/drawer/DrawerItem';
 import { DrawerIcon } from '../components/header/DrawerIcon';
 
@@ -123,6 +124,9 @@ export const DrawerStack = createDrawerNavigator(
 		},
 		ListItem2: {
 			screen: ListItem2
+		},
+		Timer: {
+			screen: TimerScreen
 		}
 	},
 	{
