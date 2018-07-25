@@ -3,6 +3,9 @@ import { View, Button, Text, StyleSheet, ScrollView, SafeAreaView } from 'react-
 import ActionButton from 'react-native-action-button';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { VictoryPie, VictoryChart } from "victory-native";
+import { bindActionCreators } from 'redux'; 
+import { connect } from 'react-redux';
+import { counterActions } from '../../state/reducer';
 
 import { colors } from '../../styles/colors';
 import { DrawerIcon } from '../../components/header/DrawerIcon';
@@ -19,7 +22,7 @@ const styles = StyleSheet.create({
 });
 
 
-export class HomeScreen extends React.Component {
+class HomeScreen extends React.Component {
 	static navigationOptions = ({ navigation }) => {
 		return {
 			title: 'Home',
@@ -28,6 +31,11 @@ export class HomeScreen extends React.Component {
 			)
 		};
 	};
+
+	constructor(props) {
+		super(props);
+		console.log(props.counter);
+	}
 
 	render() {
 		return (
@@ -64,9 +72,28 @@ export class HomeScreen extends React.Component {
 							</View>
 						</View>
 					</Card>
+					<Card>
+						<Text>{this.props.counter.count}</Text>
+						<Button title="Increment" onPress={this.props.actions.increment} />
+						<Button title="Decrement" onPress={this.props.actions.decrement} />
+					</Card>
 				</ScrollView>
 				<ActionButton buttonColor="rgba(231,76,60,1)" onPress={() => this.props.navigation.navigate('NewWorkout')} />
 			</SafeAreaView>
 		);
 	}
 }
+
+const mapStateToProps = (state) => {
+	return {
+		counter: state.counter
+	};
+};
+
+const mapDispatchToProps = (dispatch) => {
+	return { 
+    	actions: bindActionCreators(counterActions, dispatch) 
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(HomeScreen);
