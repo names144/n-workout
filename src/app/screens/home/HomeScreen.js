@@ -5,7 +5,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import { VictoryPie, VictoryChart } from "victory-native";
 import { bindActionCreators } from 'redux'; 
 import { connect } from 'react-redux';
-import { counterActions } from '../../state/reducer';
+import { counterActions } from '../../state/counter';
 
 import { colors } from '../../styles/colors';
 import { DrawerIcon } from '../../components/header/DrawerIcon';
