@@ -14,7 +14,7 @@ import { Card } from '../../components/common/Card';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-	backgroundColor: colors.textPrimary,
+	backgroundColor: colors.backgroundColor,
   },
   text: {
 	color: colors.primaryText,

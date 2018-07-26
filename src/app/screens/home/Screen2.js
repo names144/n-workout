@@ -8,7 +8,7 @@ const POKE_API = 'http://pokeapi.co/api/v2/pokemon/';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-	backgroundColor: colors.textPrimary,
+	backgroundColor: colors.backgroundColor,
     alignItems: 'center',
     justifyContent: 'center',
   },

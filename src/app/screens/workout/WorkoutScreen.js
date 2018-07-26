@@ -8,7 +8,7 @@ import { Card } from '../../components/common/Card';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-	backgroundColor: colors.textPrimary
+	backgroundColor: colors.backgroundColor
   },
   text: {
 	color: colors.primaryText,
@@ -37,7 +37,7 @@ export class WorkoutScreen extends React.Component {
 					{
 						cards.map((i) => {
 							return (
-								<Card key={i}>
+								<Card key={i} onPress={() => {}}>
 									<Text>Workout {i}</Text>
 								</Card>
 							);

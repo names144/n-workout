@@ -7,7 +7,7 @@ import { DrawerIcon } from '../../components/header/DrawerIcon';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-	backgroundColor: colors.textPrimary
+	backgroundColor: colors.backgroundColor
   },
   text: {
 	color: colors.primaryText,

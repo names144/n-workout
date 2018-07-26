@@ -1,6 +1,7 @@
 // @flow
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import PropTypes from 'prop-types';
+import { View, StyleSheet, TouchableHighlight } from 'react-native';
 
 const styles = StyleSheet.create({
 	card: {
@@ -16,15 +17,39 @@ const styles = StyleSheet.create({
 		},
 		shadowOpacity: 0.24,
 		shadowRadius: 3
+	},
+	body: {
+		
 	}
 });
 
 export const Card = (props) => {
-	return (
-		<View 
-			elevation={4}
-			style={styles.card}>
-			{ props.children }
-		</View>
-	);
+	let render;
+	if (props.onPress) {
+		render = (
+			<TouchableHighlight
+				underlayColor={'rgba(255,255,255,0.95)'}
+				onPress={props.onPress}
+				elevation={4}
+				style={styles.card}>
+
+				{ props.children }
+			</TouchableHighlight>
+			
+		);
+	} else {
+		render = (
+			<View 
+				elevation={4}
+				style={styles.card}>
+				{ props.children }
+			</View>
+		);
+	}
+
+	return render;
+};
+
+Card.propTypes = {
+	onPress: PropTypes.func
 };

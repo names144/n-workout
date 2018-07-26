@@ -18,10 +18,10 @@ export class DrawerItem extends React.Component {
 			paddingBottom: 5
 		};
 		if (this.props.navigation.isFocused(this.props.title)) {
-			style.backgroundColor = '#123abc';
+			style.backgroundColor = 'rgba(0,0,0,0.05)';
 		}
 		return (
-			<TouchableHighlight onPress={() => this.props.navigation.navigate(this.props.screen)}>
+			<TouchableHighlight underlayColor={'rgba(0,0,0,0.05)'} onPress={() => this.props.navigation.navigate(this.props.screen)}>
 				<View 
 					style={style}>
 					<View style={{flex: 1, alignSelf: 'center', marginLeft: 15}}>

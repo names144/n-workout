@@ -7,5 +7,6 @@ export const colors = {
 	accent: '#FFC107',
 	primaryText: '#212121',
 	secondaryText: '#757575',
-	divider: '#BDBDBD'
+	divider: '#BDBDBD',
+	screenBackground: '#EEEEEE'
 };

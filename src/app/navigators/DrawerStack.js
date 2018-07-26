@@ -4,7 +4,7 @@ import { createDrawerNavigator, createStackNavigator, DrawerItems } from 'react-
 import Icon from 'react-native-vector-icons/Ionicons';
 import { HomeStack } from './HomeStack';
 import { WorkoutStack } from './WorkoutStack';
-import { TimerScreen } from '../screens/timer/TimerScreen';
+import { TimerStack } from './TimerStack';
 import { DrawerItem } from '../components/drawer/DrawerItem';
 import { DrawerIcon } from '../components/header/DrawerIcon';
 
@@ -74,7 +74,7 @@ export class CustomDrawer extends React.Component {
 							borderBottomWidth: 1,
 							paddingTop: 10,
 							paddingBottom: 10,
-							marginBottom: 10
+							marginBottom: 0
 						}}>
 						<View style={{paddingLeft: 18, alignSelf: 'center', flex: 0.3}}>
 							<Icon name="md-contact" size={75} />
@@ -126,7 +126,7 @@ export const DrawerStack = createDrawerNavigator(
 			screen: ListItem2
 		},
 		Timer: {
-			screen: TimerScreen
+			screen: TimerStack
 		}
 	},
 	{
