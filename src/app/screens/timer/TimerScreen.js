@@ -4,6 +4,7 @@ import { View, Button, Text, StyleSheet, SafeAreaView } from 'react-native';
 import { colors } from '../../styles/colors';
 import { DrawerIcon } from '../../components/header/DrawerIcon';
 import { Card } from '../../components/common/Card';
+import moment from 'moment';
 
 const styles = StyleSheet.create({
   container: {
@@ -31,10 +32,10 @@ export class TimerScreen extends React.Component {
 		super(props);
 		this.state = {
 			timerInterval: null,
-			elapsed: '00:00',
+			elapsed: '00:00:00',
 			startTime: null,
-			seconds: 0,
-			minutes: 0
+			endTime: null,
+			diff: null
 		};
 
 		this._startTimer = this._startTimer.bind(this);
@@ -43,53 +44,88 @@ export class TimerScreen extends React.Component {
 	}
 
 	_startTimer() {
+		let startTime;
+		let endTime;
+		let num;
 		if (this.state.timerInterval) {
-			clearInterval(this.state.timerInterval);
+			return;
 		}
 
+		startTime = this.state.startTime;
+		endTime = this.state.endTime;
 		if (!this.state.startTime) {
-			this.setState({startTime: new Date().getTime()});
+			const now = moment();
+			this.setState({
+				startTime: now
+			});
+			startTime = now;
 		}
-
 		const i = setInterval(() => {
-			// const diff = new Date().getTime() - this.state.startTime;
-			// const milli = ('' + diff % 1000).padStart(3, '0');
-			// const sec = ('' + Math.floor(diff / 1000) % 60).padStart(2, '0');
-			// const min = ('' + Math.floor(diff / (1000 * 60)) % 60).padStart(2, '0');
-			let seconds = this.state.seconds;
-			let minutes = this.state.minutes;
-			seconds++;
-			if (seconds >= 60) {
-				seconds = 0;
-				minutes++;
+			let now = moment();
+			let duration;
+			if (!endTime) {
+				duration = moment.duration(now.diff(startTime));
+			} else {
+				if (!num) {
+					num = now.diff(endTime);
+				}
+				now = now.subtract(num, 'milliseconds');
+				duration = moment.duration(now.diff(startTime));
 			}
+			let tenthSecond = Math.floor(duration.asMilliseconds()) % 100;
+			let seconds = Math.floor(duration.asSeconds()) % 60;
+			let minutes = Math.floor(duration.asMinutes()) % 60;
 
 			const sec = ('' + seconds).padStart(2, '0');
 			const min = ('' + minutes).padStart(2, '0');
-			const elapsed = `${min}:${sec}`;
+			const tmin = ('' + tenthSecond).padStart(2, '0');
+			const elapsed = `${min}:${sec}:${tmin}`;
 			this.setState({
 				elapsed: elapsed,
-				seconds: seconds,
-				minutes: minutes
+				diff: num
 			});
-		}, 1000);
+		}, 100);
 		this.setState({
 			timerInterval: i
 		});
 	}
 
 	_stopTimer() {
+		if (!this.state.timerInterval) {
+			return;
+		}
 		clearInterval(this.state.timerInterval);
+		let now = moment();
+		let duration;
+		if (!this.state.endTime) {
+			duration = moment.duration(now.diff(this.state.startTime));
+		} else {
+			now = now.subtract(this.state.diff, 'milliseconds');
+			duration = moment.duration(now.diff(this.state.startTime));
+		}
+		let tenthSecond = Math.floor(duration.asMilliseconds()) % 100;
+		let seconds = Math.floor(duration.asSeconds()) % 60;
+		let minutes = Math.floor(duration.asMinutes()) % 60;
+
+		const sec = ('' + seconds).padStart(2, '0');
+		const min = ('' + minutes).padStart(2, '0');
+		const tmin = ('' + tenthSecond).padStart(2, '0');
+		const elapsed = `${min}:${sec}:${tmin}`;
+		this.setState({
+			timerInterval: null,
+			elapsed: elapsed,
+			endTime: now
+		});
 	}
 
 	_resetTimer() {
 		clearInterval(this.state.timerInterval);
 		this.setState({
 			timerInterval: null,
-			elapsed: '00:00',
+			elapsed: '00:00:00',
 			startTime: null,
-			seconds: 0,
-			minutes: 0
+			endTime: null,
+			diff: null
 		});
 	}
 
