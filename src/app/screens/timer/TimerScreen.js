@@ -4,7 +4,7 @@ import { View, Button, Text, StyleSheet, SafeAreaView } from 'react-native';
 import { colors } from '../../styles/colors';
 import { DrawerIcon } from '../../components/header/DrawerIcon';
 import { Card } from '../../components/common/Card';
-import moment from 'moment';
+import { DateTime } from 'luxon';
 
 const styles = StyleSheet.create({
   container: {
@@ -46,7 +46,7 @@ export class TimerScreen extends React.Component {
 	_startTimer() {
 		let startTime;
 		let endTime;
-		let num;
+		let diff;
 		if (this.state.timerInterval) {
 			return;
 		}
@@ -54,27 +54,27 @@ export class TimerScreen extends React.Component {
 		startTime = this.state.startTime;
 		endTime = this.state.endTime;
 		if (!this.state.startTime) {
-			const now = moment();
+			const now = DateTime.local();
 			this.setState({
 				startTime: now
 			});
 			startTime = now;
 		}
 		const i = setInterval(() => {
-			let now = moment();
+			let now = DateTime.local();
 			let duration;
 			if (!endTime) {
-				duration = moment.duration(now.diff(startTime));
+				duration = now.diff(startTime);
 			} else {
-				if (!num) {
-					num = now.diff(endTime);
+				if (!diff) {
+					diff = now.diff(endTime).as('milliseconds');
 				}
-				now = now.subtract(num, 'milliseconds');
-				duration = moment.duration(now.diff(startTime));
+				now = now.minus(diff);
+				duration = now.diff(startTime);
 			}
-			let tenthSecond = Math.floor(duration.asMilliseconds()) % 100;
-			let seconds = Math.floor(duration.asSeconds()) % 60;
-			let minutes = Math.floor(duration.asMinutes()) % 60;
+			let tenthSecond = Math.floor(duration.as('milliseconds')) % 100;
+			let seconds = Math.floor(duration.as('seconds')) % 60;
+			let minutes = Math.floor(duration.as('minutes')) % 60;
 
 			const sec = ('' + seconds).padStart(2, '0');
 			const min = ('' + minutes).padStart(2, '0');
@@ -82,7 +82,7 @@ export class TimerScreen extends React.Component {
 			const elapsed = `${min}:${sec}:${tmin}`;
 			this.setState({
 				elapsed: elapsed,
-				diff: num
+				diff: diff
 			});
 		}, 100);
 		this.setState({
@@ -95,17 +95,17 @@ export class TimerScreen extends React.Component {
 			return;
 		}
 		clearInterval(this.state.timerInterval);
-		let now = moment();
+		let now = DateTime.local();
 		let duration;
 		if (!this.state.endTime) {
-			duration = moment.duration(now.diff(this.state.startTime));
+			duration = now.diff(this.state.startTime);
 		} else {
-			now = now.subtract(this.state.diff, 'milliseconds');
-			duration = moment.duration(now.diff(this.state.startTime));
+			now = now.minus(this.state.diff);
+			duration = now.diff(this.state.startTime);
 		}
-		let tenthSecond = Math.floor(duration.asMilliseconds()) % 100;
-		let seconds = Math.floor(duration.asSeconds()) % 60;
-		let minutes = Math.floor(duration.asMinutes()) % 60;
+		let tenthSecond = Math.floor(duration.as('milliseconds')) % 100;
+		let seconds = Math.floor(duration.as('seconds')) % 60;
+		let minutes = Math.floor(duration.as('minutes')) % 60;
 
 		const sec = ('' + seconds).padStart(2, '0');
 		const min = ('' + minutes).padStart(2, '0');
