@@ -5,6 +5,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import { HomeStack } from './HomeStack';
 import { WorkoutStack } from './WorkoutStack';
 import { TimerStack } from './TimerStack';
+import { LibraryStack } from './LibraryStack';
 import { DrawerItem } from '../components/drawer/DrawerItem';
 import { DrawerIcon } from '../components/header/DrawerIcon';
 
@@ -127,6 +128,9 @@ export const DrawerStack = createDrawerNavigator(
 		},
 		Timer: {
 			screen: TimerStack
+		},
+		Library: {
+			screen: LibraryStack
 		}
 	},
 	{

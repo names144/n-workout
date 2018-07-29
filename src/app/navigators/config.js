@@ -7,6 +7,5 @@ export const defaultStackConfig = {
 		headerStyle: HeaderStyles.headerStyle,
 		headerTintColor: HeaderStyles.headerTintColor,
 		headerTitleStyle: HeaderStyles.headerTitleStyle,
-		
 	})
 };

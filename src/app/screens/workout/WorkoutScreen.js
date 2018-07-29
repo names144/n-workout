@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux'; 
 import { connect } from 'react-redux';
-import { View, Button, Text, StyleSheet, FlatList, SafeAreaView } from 'react-native';
+import { View, Button, Text, StyleSheet, FlatList, SectionList, SafeAreaView } from 'react-native';
 import { workoutActions } from '../../state/workout';
 import { colors } from '../../styles/colors';
 import { DrawerIcon } from '../../components/header/DrawerIcon';
@@ -33,6 +33,18 @@ class WorkoutScreen extends React.Component {
 	render() {
 		return (
 			<SafeAreaView style={styles.container}>
+			<SectionList
+				renderItem={({item, index, section}) => <Text key={index}>{item}</Text>}
+				renderSectionHeader={({section: {title}}) => (
+					<Text style={{fontWeight: 'bold'}}>{title}</Text>
+				)}
+				sections={[
+					{title: 'Title1', data: ['item1', 'item2']},
+					{title: 'Title2', data: ['item3', 'item4']},
+					{title: 'Title3', data: ['item5', 'item6']},
+				]}
+				keyExtractor={(item, index) => item + index}
+				/>
 				<FlatList
 					data={this.props.workout.workouts}
 					keyExtractor={this._keyExtractor}
